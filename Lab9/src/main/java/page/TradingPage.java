@@ -24,7 +24,7 @@ public class TradingPage extends BasePage {
     @FindBy(css = "#app > div.workspace-area > div:nth-child(3) > div > div > div > div.dialog-drag-bar > i")
     private WebElement exitSettingsButton;
 
-    @FindBy(css = "#app > div.workspace-area > div.workspace > div > div.layout-cell.horizontal > div:nth-child(3) > div.window.window-visible-overflow > div.tile.chart-tile.good.tile-window.widget-container > div > svg > g.axis.vertical > text:nth-child(6)")
+    @FindBy(css = "#app > div.workspace-area > div.workspace > div > div.layout-cell.horizontal > div:nth-child(3) > div.window.window-visible-overflow > div.tile.chart-tile.good.tile-window.widget-container > div > svg > g.axis.vertical > text:nth-child(5)")
     private WebElement timeWidget;
 
     @FindBy(css = "#app > div.sidebar > section.sidebar__leading > i.font-icon.icon_new_order")

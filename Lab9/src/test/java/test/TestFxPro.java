@@ -17,7 +17,7 @@ public class TestFxPro {
 
     public String timeBeforeChanges;
     public String timeAfterChanges;
-    
+
     public Boolean ordersAfterChanges;
 
     @BeforeMethod
