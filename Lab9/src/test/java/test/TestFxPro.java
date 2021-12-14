@@ -15,6 +15,11 @@ public class TestFxPro {
     private WebDriver driver;
     private TradingPage fxProTradingPage;
 
+    public String timeBeforeChanges;
+    public String timeAfterChanges;
+    
+    public Boolean ordersAfterChanges;
+
     @BeforeMethod
     public void browserSetup() {
         ChromeOptions options = new ChromeOptions();
@@ -37,13 +42,13 @@ public class TestFxPro {
                 .changeTimeZoneTo12()
                 .closeTimeSettings();
 
-        String timeBeforeChanges = fxProTradingPage.getTime();
+        timeBeforeChanges = fxProTradingPage.getTime();
 
         fxProTradingPage.openTimeSettings()
                 .changeTimeZoneTo11()
                 .closeTimeSettings();
 
-        String timeAfterChanges = fxProTradingPage.getTime();
+        timeAfterChanges = fxProTradingPage.getTime();
 
         Assert.assertNotEquals(timeBeforeChanges, timeAfterChanges);
     }
@@ -54,9 +59,11 @@ public class TestFxPro {
         fxProTradingPage.openCreateOrderMenu()
                 .createOrder();
 
-        Assert.assertTrue(fxProTradingPage.getOrders());
+        ordersAfterChanges = fxProTradingPage.getOrders();
 
         fxProTradingPage.deleteOrder();
+
+        Assert.assertTrue(ordersAfterChanges);
     }
 
     @AfterMethod
