@@ -15,20 +15,13 @@ public class TestFxPro {
     private WebDriver driver;
     private TradingPage fxProTradingPage;
 
-    public String timeBeforeChanges;
-    public String timeAfterChanges;
-
-    public Boolean ordersBeforeChanges;
-    public Boolean ordersAfterChanges;
-
-    private String email = "Wanjawaluj111@gmail.com";
-    private String password = "sP22j8pQ_h$hyGy";
-
     @BeforeMethod
     public void browserSetup() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
+        String email = "Wanjawaluj111@gmail.com";
+        String password = "sP22j8pQ_h$hyGy";
         fxProTradingPage = new LoginPage(driver)
                 .openPage()
                 .enterEmail(email)
@@ -44,13 +37,13 @@ public class TestFxPro {
                 .changeTimeZoneTo12()
                 .closeTimeSettings();
 
-        timeBeforeChanges = fxProTradingPage.getTime();
+        String timeBeforeChanges = fxProTradingPage.getTime();
 
         fxProTradingPage.openTimeSettings()
                 .changeTimeZoneTo11()
                 .closeTimeSettings();
 
-        timeAfterChanges = fxProTradingPage.getTime();
+        String timeAfterChanges = fxProTradingPage.getTime();
 
         Assert.assertNotEquals(timeBeforeChanges, timeAfterChanges);
     }
@@ -61,11 +54,9 @@ public class TestFxPro {
         fxProTradingPage.openCreateOrderMenu()
                 .createOrder();
 
-        ordersAfterChanges = fxProTradingPage.getOrders();
+        Assert.assertTrue(fxProTradingPage.getOrders());
 
         fxProTradingPage.deleteOrder();
-
-        Assert.assertTrue(ordersAfterChanges);
     }
 
     @AfterMethod
